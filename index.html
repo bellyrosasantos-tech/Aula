@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Educacional - Site Aula</title>
+    
+    <!-- Folha de estilo principal -->
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="icon" href="./image/logo.jpg" type="image/jpeg">
+</head>
+<body>
+
+    <!-- Cabeçalho e Navegação -->
+    <header>
+        <div class="logo">
+            <a href="./index.html">
+                <img src="./image/logo.jpg" alt="Logo do Portal Educacional" width="60">
+                <span>Site Aula</span>
+            </a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="./index.html">Início</a></li>
+                <li><a href="./material.html">Materiais</a></li>
+                <li><a href="./novidades.html">Novidades</a></li>
+                <li><a href="./contato.html">Contato</a></li>
+            </ul>
+        </nav>
+
+        <div class="auth-buttons">
+            <a href="./login.html" class="btn-login">Entrar</a>
+            <a href="./cadastro.html" class="btn-cadastro">Cadastrar</a>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <!-- Seção de Destaque (Hero) -->
+        <section class="hero" style="background-image: url('./image/fundo.png');">
+            <div class="hero-content">
+                <h1>Bem-vindo ao Portal de Estudos</h1>
+                <p>Acesse conteúdos organizados por matéria, materiais complementares e fique por dentro das novidades.</p>
+                <a href="./material.html" class="btn-principal">Explorar Materiais</a>
+            </div>
+        </section>
+
+        <!-- Seção de Disciplinas -->
+        <section class="disciplinas">
+            <h2>Escolha uma Disciplina</h2>
+            
+            <div class="cards-container">
+                <!-- Card História -->
+                <article class="card">
+                    <img src="./image/historia.jpg" alt="Disciplina de História">
+                    <h3>História</h3>
+                    <p>Resumos, linhas do tempo e conteúdos históricos.</p>
+                    <a href="./historia/historia.html">Acessar História</a>
+                </article>
+
+                <!-- Card Matemática -->
+                <article class="card">
+                    <img src="./image/matematica.png" alt="Disciplina de Matemática">
+                    <h3>Matemática</h3>
+                    <p>Fórmulas, exercícios resolvidos e conceitos fundamentais.</p>
+                    <a href="./matematica/matematica.html">Acessar Matemática</a>
+                </article>
+
+                <!-- Card Português -->
+                <article class="card">
+                    <img src="./image/abcd.png" alt="Disciplina de Português">
+                    <h3>Português</h3>
+                    <p>Gramática, interpretação de texto e dicas de redação.</p>
+                    <a href="./portugues/portugues.html">Acessar Português</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Chamada para Área Logada -->
+        <section class="area-aluno" style="background-image: url('./image/subfundo.png');">
+            <h2>Já é aluno cadastrado?</h2>
+            <p>Faça login para acessar materiais exclusivos na área restrita.</p>
+            <a href="./login.html">Ir para Área do Aluno</a>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2026 Site Aula - Todos os direitos reservados.</p>
+        <nav class="footer-links">
+            <a href="./contato.html">Fale Conosco</a> | 
+            <a href="./admin.html">Área Administrativa</a>
+        </nav>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./script/script.js"></script>
+    <script src="./script/scriptindex2.js"></script>
+</body>
+</html>

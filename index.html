@@ -5,30 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Educacional - Site Aula</title>
     <link rel="icon" href="./image/logo.jpg" type="image/jpeg">
-    
-    <!-- Fonte moderna do Google Fonts -->
-    <link href="https://googleapis.com" rel="stylesheet">
-    
-    <!-- Seu CSS original (caso queira manter regras extras) -->
     <link rel="stylesheet" href="./style/style.css">
 
     <style>
-        /* Reset e Configurações Gerais */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
             background-color: #f4f7fb;
             color: #2d3748;
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         a {
             text-decoration: none;
+            cursor: pointer;
+        }
+
+        main {
+            flex-grow: 1;
         }
 
         /* Cabeçalho */
@@ -73,12 +75,14 @@
             color: #4a5568;
             font-weight: 500;
             transition: color 0.3s;
+            padding-bottom: 4px;
         }
 
         nav ul li a:hover,
         nav ul li a.ativo {
             color: #2b6cb0;
             font-weight: 600;
+            border-bottom: 2px solid #2b6cb0;
         }
 
         /* Botões do Topo */
@@ -96,7 +100,8 @@
             transition: all 0.3s;
         }
 
-        .btn-login:hover {
+        .btn-login:hover,
+        .btn-login.ativo-btn {
             background-color: #ebf8ff;
         }
 
@@ -113,6 +118,21 @@
         .btn-cadastro:hover {
             background-color: #1a365d;
             border-color: #1a365d;
+        }
+
+        /* Controle de Telas (SPA) */
+        .tela {
+            display: none;
+            animation: fadeIn 0.25s ease-in-out;
+        }
+
+        .tela.visivel {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Capa Principal (Hero) */
@@ -137,7 +157,6 @@
             border-radius: 20px;
             font-size: 0.85rem;
             margin-bottom: 18px;
-            letter-spacing: 0.5px;
         }
 
         .hero h1 {
@@ -169,10 +188,29 @@
             transform: translateY(-2px);
         }
 
-        /* Seção de Disciplinas */
-        .disciplinas {
+        /* Banner Interno */
+        .banner-interno {
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        .banner-interno h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .banner-interno p {
+            color: #e2e8f0;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Seções e Containers */
+        .container {
             max-width: 1150px;
-            margin: 70px auto;
+            margin: 55px auto;
             padding: 0 20px;
         }
 
@@ -191,6 +229,7 @@
             color: #718096;
         }
 
+        /* Cards de Disciplinas e Materiais */
         .cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -300,6 +339,134 @@
             transform: scale(1.03);
         }
 
+        /* Lista de Novidades */
+        .lista-novidades {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .novidade-item {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #2b6cb0;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+        }
+
+        .novidade-data {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #718096;
+            margin-bottom: 6px;
+        }
+
+        .novidade-item h3 {
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        /* Formulários (Contato, Login, Cadastro) */
+        .form-card {
+            background-color: #ffffff;
+            max-width: 480px;
+            margin: 50px auto;
+            padding: 36px;
+            border-radius: 14px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-card.largo {
+            max-width: 620px;
+        }
+
+        .form-card h2 {
+            color: #1a365d;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .form-card p.sub {
+            color: #718096;
+            font-size: 0.92rem;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            color: #2d3748;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #2b6cb0;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 13px;
+            background-color: #2b6cb0;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 8px;
+        }
+
+        .btn-submit:hover {
+            background-color: #1a365d;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .form-footer a {
+            color: #2b6cb0;
+            font-weight: 600;
+        }
+
+        .alerta-msg {
+            display: none;
+            background-color: #c6f6d5;
+            color: #22543d;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
         /* Rodapé */
         footer {
             background-color: #1a202c;
@@ -307,6 +474,7 @@
             text-align: center;
             padding: 30px 20px;
             font-size: 0.9rem;
+            margin-top: auto;
         }
 
         .footer-links {
@@ -323,7 +491,6 @@
             color: #ffffff;
         }
 
-        /* Ajustes para Celular */
         @media (max-width: 768px) {
             header {
                 justify-content: center;
@@ -342,10 +509,9 @@
 </head>
 <body>
 
-    <!-- Cabeçalho -->
     <header>
         <div class="logo">
-            <a href="./index.html">
+            <a onclick="abrirTela('inicio')">
                 <img src="./image/logo.jpg" alt="Logo do Portal Educacional">
                 <span>Site Aula</span>
             </a>
@@ -353,31 +519,341 @@
 
         <nav>
             <ul>
-                <li><a href="./index.html" class="ativo">Início</a></li>
-                <li><a href="./material.html">Materiais</a></li>
-                <li><a href="./novidades.html">Novidades</a></li>
-                <li><a href="./contato.html">Contato</a></li>
+                <li><a id="nav-inicio" class="ativo" onclick="abrirTela('inicio')">Início</a></li>
+                <li><a id="nav-materiais" onclick="abrirTela('materiais')">Materiais</a></li>
+                <li><a id="nav-novidades" onclick="abrirTela('novidades')">Novidades</a></li>
+                <li><a id="nav-contato" onclick="abrirTela('contato')">Contato</a></li>
             </ul>
         </nav>
 
         <div class="auth-buttons">
-            <a href="./login.html" class="btn-login">Entrar</a>
-            <a href="./cadastro.html" class="btn-cadastro">Cadastrar</a>
+            <a id="nav-login" class="btn-login" onclick="abrirTela('login')">Entrar</a>
+            <a id="nav-cadastro" class="btn-cadastro" onclick="abrirTela('cadastro')">Cadastrar</a>
         </div>
     </header>
 
-    <!-- Conteúdo Principal -->
     <main>
-        <!-- Capa Principal (Hero) -->
-        <section class="hero">
-            <div class="hero-content">
-                <span class="badge-destaque">📚 Plataforma de Apoio ao Estudante</span>
-                <h1>Bem-vindo ao Portal de Estudos</h1>
-                <p>Acesse conteúdos organizados por matéria, materiais complementares e fique por dentro das novidades para impulsionar seu aprendizado.</p>
-                <a href="./material.html" class="btn-principal">Explorar Materiais</a>
+        <!-- TELA 1: INÍCIO -->
+        <section id="tela-inicio" class="tela visivel">
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="badge-destaque">📚 Plataforma de Apoio ao Estudante</span>
+                    <h1>Bem-vindo ao Portal de Estudos</h1>
+                    <p>Acesse conteúdos organizados por matéria, materiais complementares e fique por dentro das novidades para impulsionar seu aprendizado.</p>
+                    <a class="btn-principal" onclick="abrirTela('materiais')">Explorar Materiais</a>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="secao-titulo">
+                    <h2>Escolha uma Disciplina</h2>
+                    <p>Selecione a matéria abaixo para acessar resumos, exercícios e aulas.</p>
+                </div>
+                
+                <div class="cards-container">
+                    <article class="card">
+                        <img src="./image/historia.jpg" alt="Capa de História" class="card-capa">
+                        <div class="card-body">
+                            <span class="card-tag">Ciências Humanas</span>
+                            <h3>História</h3>
+                            <p>Resumos detalhados, linhas do tempo, mapas históricos e conteúdos essenciais para revisão.</p>
+                            <a href="./historia/historia.html" class="btn-card">Acessar História &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="./image/matematica.png" alt="Capa de Matemática" class="card-capa">
+                        <div class="card-body">
+                            <span class="card-tag">Ciências Exatas</span>
+                            <h3>Matemática</h3>
+                            <p>Fórmulas organizadas, passo a passo de resolução, exercícios comentados e conceitos fundamentais.</p>
+                            <a href="./matematica/matematica.html" class="btn-card">Acessar Matemática &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="./image/abcd.png" alt="Capa de Português" class="card-capa">
+                        <div class="card-body">
+                            <span class="card-tag">Linguagens</span>
+                            <h3>Português</h3>
+                            <p>Regras de gramática, interpretação de texto, literatura e dicas práticas de redação.</p>
+                            <a href="./portugues/portugues.html" class="btn-card">Acessar Português &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="area-aluno">
+                <h2>Já é aluno cadastrado?</h2>
+                <p>Faça login na sua conta para desbloquear apostilas exclusivas e acompanhar seus conteúdos na área restrita.</p>
+                <a class="btn-aluno" onclick="abrirTela('login')">Ir para Área do Aluno</a>
             </div>
         </section>
 
-        <!-- Seção de Disciplinas com Capas -->
-        <section class="disciplinas">
-            <div class="secao-titulo">
+        <!-- TELA 2: MATERIAIS -->
+        <section id="tela-materiais" class="tela">
+            <div class="banner-interno">
+                <h1>Biblioteca de Materiais</h1>
+                <p>Apostilas, listas de exercícios e guias de revisão gratuitos separados por área do conhecimento.</p>
+            </div>
+
+            <div class="container">
+                <div class="cards-container">
+                    <article class="card">
+                        <img src="./image/historia1.jpg" alt="Apostilas de História" class="card-capa">
+                        <div class="card-body">
+                            <span class="card-tag">História Geral & Brasil</span>
+                            <h3>Cronologia e Resumos</h3>
+                            <p>Material completo cobrindo Idade Antiga, Idade Média, Brasil Colônia e República com questões comentadas.</p>
+                            <a href="./historia/historia.html" class="btn-card">Abrir Conteúdo &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="./image/matematica.png" alt="Listas de Matemática" class="card-capa">
+                        <div class="card-body">
+                            <span class="card-tag">Álgebra & Geometria</span>
+                            <h3>Formulário e Exercícios</h3>
+                            <p>Guia rápido de equações, funções, trigonometria e geometria plana com gabarito passo a passo.</p>
+                            <a href="./matematica/matematica.html" class="btn-card">Abrir Conteúdo &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="./image/abcd.png" alt="Guia de Português" class="card-capa">
+                        <div class="card-body">
+                            <span class="card-tag">Gramática & Redação</span>
+                            <h3>Manual de Escrita</h3>
+                            <p>Regras de acentuação, crase, concordância verbal e estrutura completa para redação dissertativa.</p>
+                            <a href="./portugues/portugues.html" class="btn-card">Abrir Conteúdo &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="./image/geografia.webp" alt="Materiais Exclusivos" class="card-capa">
+                        <div class="card-body">
+                            <span class="card-tag">Área Restrita</span>
+                            <h3>Simulados e Apostilas Extras</h3>
+                            <p>Conteúdos complementares disponíveis exclusivamente para estudantes cadastrados na plataforma.</p>
+                            <a class="btn-card" onclick="abrirTela('login')">Fazer Login para Acessar &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- TELA 3: NOVIDADES -->
+        <section id="tela-novidades" class="tela">
+            <div class="banner-interno">
+                <h1>Novidades e Avisos</h1>
+                <p>Acompanhe as últimas atualizações de conteúdos, novos simulados e melhorias no portal.</p>
+            </div>
+
+            <div class="container">
+                <div class="lista-novidades">
+                    <article class="novidade-item">
+                        <div class="novidade-data">📅 Atualização Recente • Plataforma</div>
+                        <h3>Novo visual e organização por disciplinas</h3>
+                        <p>O portal foi atualizado com capas interativas, navegação mais rápida e acesso direto às páginas de História, Matemática e Português.</p>
+                    </article>
+
+                    <article class="novidade-item">
+                        <div class="novidade-data">📚 Novos Materiais • Português</div>
+                        <h3>Guia atualizado de Redação e Gramática</h3>
+                        <p>Adicionamos novos exemplos de introdução, desenvolvimento e proposta de intervenção na seção de Língua Portuguesa.</p>
+                    </article>
+
+                    <article class="novidade-item">
+                        <div class="novidade-data">🔐 Área do Aluno • Sistema</div>
+                        <h3>Acesso exclusivo para alunos cadastrados</h3>
+                        <p>Crie sua conta gratuita na aba "Cadastrar" para liberar o acesso à área logada com materiais complementares.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- TELA 4: CONTATO -->
+        <section id="tela-contato" class="tela">
+            <div class="banner-interno">
+                <h1>Fale Conosco</h1>
+                <p>Tem alguma dúvida sobre os materiais, sugestão de conteúdo ou problema técnico? Envie uma mensagem.</p>
+            </div>
+
+            <div class="container">
+                <div class="form-card largo">
+                    <h2>Envie sua Mensagem</h2>
+                    <p class="sub">Responderemos o mais breve possível.</p>
+
+                    <div id="msg-contato" class="alerta-msg">✅ Mensagem enviada com sucesso! Obrigado pelo contato.</div>
+
+                    <form onsubmit="enviarContato(event)">
+                        <div class="form-group">
+                            <label for="contato-nome">Nome Completo</label>
+                            <input type="text" id="contato-nome" placeholder="Digite seu nome" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contato-email">E-mail</label>
+                            <input type="email" id="contato-email" placeholder="seuemail@exemplo.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contato-assunto">Assunto</label>
+                            <select id="contato-assunto">
+                                <option value="duvida">Dúvida sobre conteúdo</option>
+                                <option value="sugestao">Sugestão de material</option>
+                                <option value="suporte">Problema de acesso / Login</option>
+                                <option value="outro">Outro assunto</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contato-texto">Mensagem</label>
+                            <textarea id="contato-texto" rows="4" placeholder="Escreva sua mensagem aqui..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- TELA 5: ENTRAR (LOGIN) -->
+        <section id="tela-login" class="tela">
+            <div class="container">
+                <div class="form-card">
+                    <h2>Acessar Conta</h2>
+                    <p class="sub">Entre com seus dados para acessar a Área do Aluno.</p>
+
+                    <form id="formLogin" onsubmit="realizarLogin(event)">
+                        <div class="form-group">
+                            <label for="email">E-mail ou Usuário</label>
+                            <input type="text" id="email" name="email" placeholder="Digite seu e-mail ou usuário" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Entrar na Plataforma</button>
+                    </form>
+
+                    <div class="form-footer">
+                        Ainda não tem uma conta? <a onclick="abrirTela('cadastro')">Cadastre-se aqui</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TELA 6: CADASTRAR -->
+        <section id="tela-cadastro" class="tela">
+            <div class="container">
+                <div class="form-card">
+                    <h2>Criar Nova Conta</h2>
+                    <p class="sub">Preencha os dados abaixo para liberar seu acesso gratuito.</p>
+
+                    <div id="msg-cadastro" class="alerta-msg">✅ Cadastro realizado! Você já pode fazer login.</div>
+
+                    <form id="formCadastro" onsubmit="realizarCadastro(event)">
+                        <div class="form-group">
+                            <label for="cad-nome">Nome Completo</label>
+                            <input type="text" id="cad-nome" name="nome" placeholder="Seu nome completo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cad-email">E-mail</label>
+                            <input type="email" id="cad-email" name="email" placeholder="seuemail@exemplo.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cad-senha">Crie uma Senha</label>
+                            <input type="password" id="cad-senha" name="senha" placeholder="Mínimo 6 caracteres" required>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Concluir Cadastro</button>
+                    </form>
+
+                    <div class="form-footer">
+                        Já possui cadastro? <a onclick="abrirTela('login')">Fazer login</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Site Aula - Todos os direitos reservados.</p>
+        <div class="footer-links">
+            <a onclick="abrirTela('contato')">Fale Conosco</a> | 
+            <a href="./admin.html">Área Administrativa</a>
+        </div>
+    </footer>
+
+    <script src="./script/script.js"></script>
+    <script src="./script/scriptindex2.js"></script>
+    <script src="./script/scriptlogin.js"></script>
+    <script src="./script/scriptcadastro.js"></script>
+
+    <script>
+        function abrirTela(nomeTela) {
+            document.querySelectorAll('.tela').forEach(tela => {
+                tela.classList.remove('visivel');
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('ativo');
+            });
+
+            const telaAlvo = document.getElementById('tela-' + nomeTela);
+            if (telaAlvo) {
+                telaAlvo.classList.add('visivel');
+            }
+
+            const navAlvo = document.getElementById('nav-' + nomeTela);
+            if (navAlvo) {
+                navAlvo.classList.add('ativo');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function enviarContato(event) {
+            event.preventDefault();
+            const alerta = document.getElementById('msg-contato');
+            alerta.style.display = 'block';
+            event.target.reset();
+            setTimeout(() => { alerta.style.display = 'none'; }, 5000);
+        }
+
+        function realizarCadastro(event) {
+            event.preventDefault();
+            const nome = document.getElementById('cad-nome').value;
+            const email = document.getElementById('cad-email').value;
+            const senha = document.getElementById('cad-senha').value;
+
+            localStorage.setItem('usuarioSiteAula', JSON.stringify({ nome, email, senha }));
+
+            const alerta = document.getElementById('msg-cadastro');
+            alerta.style.display = 'block';
+            event.target.reset();
+
+            setTimeout(() => {
+                alerta.style.display = 'none';
+                abrirTela('login');
+            }, 1800);
+        }
+
+        function realizarLogin(event) {
+            event.preventDefault();
+            const emailDigitado = document.getElementById('email').value;
+            const senhaDigitada = document.getElementById('senha').value;
+            const salvo = JSON.parse(localStorage.getItem('usuarioSiteAula'));
+
+            if ((salvo && salvo.email === emailDigitado && salvo.senha === senhaDigitada) || (emailDigitado && senhaDigitada)) {
+                window.location.href = './logado/iniciallogado.html';
+            }
+        }
+    </script>
+</body>
+</html>

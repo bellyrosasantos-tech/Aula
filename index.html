@@ -4,25 +4,356 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Educacional - Site Aula</title>
-    
-    <!-- Folha de estilo principal -->
-    <link rel="stylesheet" href="./style/style.css">
     <link rel="icon" href="./image/logo.jpg" type="image/jpeg">
+    
+    <!-- Fonte moderna do Google Fonts -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <!-- Seu CSS original (caso queira manter regras extras) -->
+    <link rel="stylesheet" href="./style/style.css">
+
+    <style>
+        /* Reset e Configurações Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fb;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #ffffff;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #1a365d;
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #2b6cb0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.ativo {
+            color: #2b6cb0;
+            font-weight: 600;
+        }
+
+        /* Botões do Topo */
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-login {
+            padding: 8px 20px;
+            border: 2px solid #2b6cb0;
+            color: #2b6cb0;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-login:hover {
+            background-color: #ebf8ff;
+        }
+
+        .btn-cadastro {
+            padding: 8px 20px;
+            background-color: #2b6cb0;
+            color: #ffffff;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 2px solid #2b6cb0;
+            transition: all 0.3s;
+        }
+
+        .btn-cadastro:hover {
+            background-color: #1a365d;
+            border-color: #1a365d;
+        }
+
+        /* Capa Principal (Hero) */
+        .hero {
+            background: linear-gradient(rgba(15, 32, 65, 0.78), rgba(15, 32, 65, 0.85)), url('./image/fundo.png');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero-content {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .badge-destaque {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 18px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #e2e8f0;
+            margin-bottom: 32px;
+        }
+
+        .btn-principal {
+            display: inline-block;
+            background-color: #38a169;
+            color: #ffffff;
+            padding: 14px 34px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 15px rgba(56, 161, 105, 0.4);
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .btn-principal:hover {
+            background-color: #2f855a;
+            transform: translateY(-2px);
+        }
+
+        /* Seção de Disciplinas */
+        .disciplinas {
+            max-width: 1150px;
+            margin: 70px auto;
+            padding: 0 20px;
+        }
+
+        .secao-titulo {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .secao-titulo h2 {
+            font-size: 2.1rem;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .secao-titulo p {
+            color: #718096;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-capa {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-bottom: 3px solid #ebf8ff;
+        }
+
+        .card-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #2b6cb0;
+            margin-bottom: 6px;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            color: #1a202c;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #4a5568;
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .btn-card {
+            display: block;
+            text-align: center;
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-card:hover {
+            background-color: #2b6cb0;
+            color: #ffffff;
+        }
+
+        /* Banner Área do Aluno */
+        .area-aluno {
+            background: linear-gradient(rgba(26, 54, 93, 0.88), rgba(26, 54, 93, 0.92)), url('./image/subfundo.png');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            text-align: center;
+            padding: 75px 20px;
+            margin-top: 60px;
+        }
+
+        .area-aluno h2 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .area-aluno p {
+            max-width: 600px;
+            margin: 0 auto 28px auto;
+            color: #cbd5e0;
+        }
+
+        .btn-aluno {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #1a365d;
+            padding: 13px 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .btn-aluno:hover {
+            background-color: #e2e8f0;
+            transform: scale(1.03);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #1a202c;
+            color: #a0aec0;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            margin-top: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e0;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Ajustes para Celular */
+        @media (max-width: 768px) {
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Cabeçalho e Navegação -->
+    <!-- Cabeçalho -->
     <header>
         <div class="logo">
             <a href="./index.html">
-                <img src="./image/logo.jpg" alt="Logo do Portal Educacional" width="60">
+                <img src="./image/logo.jpg" alt="Logo do Portal Educacional">
                 <span>Site Aula</span>
             </a>
         </div>
 
         <nav>
             <ul>
-                <li><a href="./index.html">Início</a></li>
+                <li><a href="./index.html" class="ativo">Início</a></li>
                 <li><a href="./material.html">Materiais</a></li>
                 <li><a href="./novidades.html">Novidades</a></li>
                 <li><a href="./contato.html">Contato</a></li>
@@ -37,65 +368,16 @@
 
     <!-- Conteúdo Principal -->
     <main>
-        <!-- Seção de Destaque (Hero) -->
-        <section class="hero" style="background-image: url('./image/fundo.png');">
+        <!-- Capa Principal (Hero) -->
+        <section class="hero">
             <div class="hero-content">
+                <span class="badge-destaque">📚 Plataforma de Apoio ao Estudante</span>
                 <h1>Bem-vindo ao Portal de Estudos</h1>
-                <p>Acesse conteúdos organizados por matéria, materiais complementares e fique por dentro das novidades.</p>
+                <p>Acesse conteúdos organizados por matéria, materiais complementares e fique por dentro das novidades para impulsionar seu aprendizado.</p>
                 <a href="./material.html" class="btn-principal">Explorar Materiais</a>
             </div>
         </section>
 
-        <!-- Seção de Disciplinas -->
+        <!-- Seção de Disciplinas com Capas -->
         <section class="disciplinas">
-            <h2>Escolha uma Disciplina</h2>
-            
-            <div class="cards-container">
-                <!-- Card História -->
-                <article class="card">
-                    <img src="./image/historia.jpg" alt="Disciplina de História">
-                    <h3>História</h3>
-                    <p>Resumos, linhas do tempo e conteúdos históricos.</p>
-                    <a href="./historia/historia.html">Acessar História</a>
-                </article>
-
-                <!-- Card Matemática -->
-                <article class="card">
-                    <img src="./image/matematica.png" alt="Disciplina de Matemática">
-                    <h3>Matemática</h3>
-                    <p>Fórmulas, exercícios resolvidos e conceitos fundamentais.</p>
-                    <a href="./matematica/matematica.html">Acessar Matemática</a>
-                </article>
-
-                <!-- Card Português -->
-                <article class="card">
-                    <img src="./image/abcd.png" alt="Disciplina de Português">
-                    <h3>Português</h3>
-                    <p>Gramática, interpretação de texto e dicas de redação.</p>
-                    <a href="./portugues/portugues.html">Acessar Português</a>
-                </article>
-            </div>
-        </section>
-
-        <!-- Chamada para Área Logada -->
-        <section class="area-aluno" style="background-image: url('./image/subfundo.png');">
-            <h2>Já é aluno cadastrado?</h2>
-            <p>Faça login para acessar materiais exclusivos na área restrita.</p>
-            <a href="./login.html">Ir para Área do Aluno</a>
-        </section>
-    </main>
-
-    <!-- Rodapé -->
-    <footer>
-        <p>&copy; 2026 Site Aula - Todos os direitos reservados.</p>
-        <nav class="footer-links">
-            <a href="./contato.html">Fale Conosco</a> | 
-            <a href="./admin.html">Área Administrativa</a>
-        </nav>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="./script/script.js"></script>
-    <script src="./script/scriptindex2.js"></script>
-</body>
-</html>
+            <div class="secao-titulo">
